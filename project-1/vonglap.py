@@ -1,34 +1,47 @@
-#nhap ten, so ban thang, so kien tao, vi tri cua cac cau thu va in ra vua pha luoi, vua kien tao va qua bong vang
-
-
-player={}
-#vong lap vo han
-def Fifacheck():
-	while True:
-		name=str(input("Ten cau thu: "))
-		if (name.lower() == "stop"): 
-			break
-		goal=int(input('so ban thang: '))
-		assist=int(input("so kien tao: "))
-
-
+#nhap vao mot day so, kiem tra cac so nao la chan le/ so nguyen to, so luong so nguyen to
+import math
+a=[]
+b=[]
+c=[]
+d=[]
+n=int(input("do dai day so:"))
+#nhap day so:
+for i in range(n):
+	x=int(input())
+	a.append(x)
+print('Day so:', a)
+#kiem tra chan le:
+def check1(m):
+		if m%2==0:
+			return True
+		else:
+			return False
+#kiem tra so nguyen to:
+def check2(n):
+	if n<2:
+		return False
+	for i in range(2,int(math.sqrt(n))+1):
+		if n%i==0:
+			return False
+	return True
+#ham main
 if __name__=='__main__':
-	Fifacheck()
-	max_goal=0
-	max_assist=0
-	vuaphaluoi= " "
-	vuakientao= " "
-	for name in player:
-		#vua pha luoi
-		if player[goal]>max_goal:
-			max_goal=player[goal]
-			vuaphaluoi=player[name]
-
-		#vua kien tao
-		if player[assist]>max_assist:
-			max_assist=player[assist]
-			vuakientao=player[name]
-	print(vuakientao, "la vkt")
-	print(vuaphaluoi, "la vpl")
-
-
+	print('KIEM TRA SO NGUYEN TO: ')
+	for x in a:
+		if check2(x):
+			print(x, "la snt")
+			b.append(x)
+		else:
+			print(x, "ko la snt")
+	print("KIEM TRA SO CHAN LE: ")
+	for y in a:
+		if check1(y):
+			print(y, "la so chan")
+			c.append(y)
+		else:
+			print(y, "la so le")
+			d.append(y)
+print("cac snt la", b)
+print('so cac snt la:', len(b))
+print("day cac so chan", c)
+print("day cac so le", d)
